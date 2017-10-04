@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { StartComponent } from './start/start.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     HeaderComponent,
-    StartComponent
+    StartComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
