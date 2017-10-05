@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { StartComponent } from './start/start.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { PackageComponent } from './package/package.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     SidebarComponent,
     HeaderComponent,
     StartComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    PackageComponent
   ],
   imports: [
     BrowserModule,
