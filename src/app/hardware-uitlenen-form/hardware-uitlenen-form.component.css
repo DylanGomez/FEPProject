@@ -1,0 +1,21 @@
+.hardwareID {
+    width: 150px;
+}
+
+.selectHardware {
+    text-align: center;  
+}
+
+.mainForm {
+    position: relative;
+}
+
+.left {
+    float: left;
+    width: 45%;
+}
+
+.right {
+    float: right;
+    width: 45%;
+}
