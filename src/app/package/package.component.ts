@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+
 
 @Component({
   selector: 'app-package',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./package.component.scss']
 })
 export class PackageComponent implements OnInit {
+  @ViewChild('myModal') myModal;
 
   constructor() { }
 
@@ -14,6 +16,14 @@ export class PackageComponent implements OnInit {
 
   makePackage(){
     
+  }
+
+
+  openModel() {
+    this.myModal.nativeElement.className = 'modal fade show';
+  }
+  closeModel() {
+    this.myModal.nativeElement.className = 'modal hide';
   }
 
 }

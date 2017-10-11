@@ -1,4 +1,19 @@
 
 <div>
-  <button class=""></button>
+  <button class="samenstellen btn btn-primary">Stel pakket samen</button>
 </div>
+
+<button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+    </div>
+  </div>
+  <app-hardware-uitlenen-form></app-hardware-uitlenen-form>
+</div>
+
