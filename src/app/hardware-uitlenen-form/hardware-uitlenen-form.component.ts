@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { FormDataService } from '../form-data.service';
+import { FormDataService } from '../form-data/form-data.service';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -14,46 +14,43 @@ declare var $: any;
 
 export class HardwareUitlenenFormComponent implements OnInit {
 
+  // Models for the inputs
   studentnameModel = '';
   studentnumberModel = '';
 
-  hardwareItems: Observable<any[]> = this.formDataService.hardwareItems;
-  private hardwareList: {name: string; id: number; selected: boolean; hardwareID: string}[] = this.formDataService.hardwareList;
+  // For testing purposes
+  testingMode: boolean = this.formDataService.testingMode;
 
+  // Hardware list containing all hardware items, including the selected status
+  private hardwareList = this.formDataService.hardwareList;
+
+  // Used in a front end check. Will return true if the user has an item selected
   hasSomethingSelected(): boolean {
-    return this.formDataService.hasSomethingSelected();
+    return this.formDataService.hardwareList.some(function(a){ return a.selected; });
   }
 
+  // We need to reload the tablet or something after this.
+  // Angular is bugged and will add random items to the table
   saveStatus(): void {
-    // Go through the hardware list, check if selected is true.
-    // Ifso, sent information to formDataService to handle the database coonection etc.
-    this.hardwareList.forEach(element => {
-      if (element.selected === true) {
-        this.formDataService.setLent(element.hardwareID, this.studentnumberModel);
-      }
+    // Filter list, sent information to formDataService to handle the database conection etc.
+    this.hardwareList.filter(x => x.selected === true).forEach(element => {
+      this.formDataService.setLent(element.hardwareID, element.id, this.studentnumberModel, this.studentnameModel);
     });
   }
 
   reset(): void {
     // Temporary for testing!!
+    // This will NOT RESET the lendings table!!!
     this.formDataService.resetAvailability();
   }
 
   // This function is called when a user selects hardware. It will check if it is selected or not and changes values
   private selectHardware(id: number) {
-    this.formDataService.hardwareList.forEach(element => {
-      if (element.id === id) {
-        // Change button color
-        $('tr[hardwareid=' + id + '] button').toggleClass('btn-secondairy btn-success');
-        element.selected = !element.selected;
-        // Change button text
-        if (element.selected) {
-          $('tr[hardwareid=' + id + '] button').text('Geselecteerd!');
-        } else {
-          $('tr[hardwareid=' + id + '] button').text('Selecteer!');
-        }
-      }
-    });
+    // Filter through array list and only selecting the element from which the id is the same as the given id
+    const element = this.hardwareList.filter(x => x.id === id)[0];
+    element.selected = !element.selected;
+    // Change button color & text
+    $('tr[hardwareid=' + id + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
   }
 
   // Constructor. Constructs things.

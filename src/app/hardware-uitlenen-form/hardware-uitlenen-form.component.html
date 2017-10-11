@@ -20,7 +20,7 @@
 
   <div class="right">
       <div class="form-group">
-        <label for="StudentName">Student name</label>
+        <label for="StudentName">Student naam</label>
         <input 
           type="text" 
           class="form-control" 
@@ -33,14 +33,14 @@
         >
       </div>
       <div class="form-group">
-          <label for="StudentNumber">Student number</label>
+          <label for="StudentNumber">Student nummer</label>
           <input 
             type="number" 
             class="form-control" 
             id="StudentNumber"
             name="StudentNumber"
             placeholder="123456"
-            [(ngModel)]="studentnumberModel.name"
+            [(ngModel)]="studentnumberModel"
             #studentnumber="ngModel"
             required
           >
@@ -50,12 +50,18 @@
           <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Submit</button>
       </div>
       <ng-template #disabledButton>
-          <button type="submit" class="btn btn-primary" disabled>Submit</button>
+          <button type="submit" class="btn btn-primary" disabled>Toevoegen</button>
           Nog niet alles is ingevuld!
       </ng-template>
 
-    </div>
+      <div *ngIf="testingMode">
+        <br /> <br />
+        <button class="btn btn-danger" (click)="reset()">Reset</button>
+        Reset alle database documents status naar available
+      </div>
+      
 
+    </div>
   
 </form>
 
@@ -93,12 +99,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" (click)="saveStatus()" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">Save changes</button>
       </div>
     </div>
   </div>
 </div>
-
-<br />
-
-<button (click)="reset()">Reset available items</button>

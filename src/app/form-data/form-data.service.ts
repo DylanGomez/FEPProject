@@ -12,43 +12,60 @@ export interface HardwareItemInterface {
   hardwareID?: string;
 }
 
+export interface LendingsInterface {
+  date: string;
+  hardwareId: number;
+  studentName: string;
+  studentNumber: string;
+}
+
 @Injectable()
 export class FormDataService {
 
-  public hardwareItemsDB: AngularFirestoreCollection<HardwareItemInterface>;
-  hardwareItems: Observable<HardwareItemInterface[]>;
+  // If true, it will show a reset button in the 'hardware-uitlenen-form' page
+  public testingMode = true;
 
+  // Firestore collection
+  private hardwareItemsDB: AngularFirestoreCollection<HardwareItemInterface>;
+
+  // Firestore observable that contains our items and is capable of itteration
+  public hardwareItems: Observable<HardwareItemInterface[]>;
+
+  // Custom list containing custom data which can be used in a front end table
   public hardwareList: {name: string; id: number; selected: boolean; hardwareID: string;}[] = [];
 
-  // Check that returns boolean wether the user selected hardware
-  hasSomethingSelected(): boolean {
-    let foundHardware = false;
-    this.hardwareList.forEach(element => {
-      // I am unable to just call return true???(wont return anything)
-      if (element.selected === true) { foundHardware = true; }
-    });
-    return foundHardware;
-  }
-
-  public setLent(hardwareID, studentnumber): void {
-    console.log('We got id: ' + hardwareID);
-    console.log('Studentnumber: ' + studentnumber);
-    console.log('--------------------------');
-
-    // Update hardware list, set status to not available
+  public setLent(hardwareID, id, studentnumber, studentname): void {
+    // Update hardware list, set status to not available (hardwareID is the document key)
     this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
+
+    // Adding document to lendings
+    this.db.collection('lendings').add({
+      hardwareId: id,
+      studentNumber: studentnumber,
+      studentName: studentname,
+      date: new Date(new Date().getTime()).toLocaleString()
+    });
   }
 
   public resetAvailability(): void {
-    // Not working??
+    // This will reset ALL hardware items status and set it back to available.
+    // This function can only be called if testingMode is on(due to button invisable)
+    // Delete when this goes live
     console.log('Resetting available items');
-    this.hardwareItems.forEach(function(hardwareItem) {
-      console.log( 'Inner foreach 1' );
-      hardwareItem.forEach(function(item) {
-        console.log( 'Inner foreach 2' );
+    this.db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'not available'))
+    .snapshotChanges().map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as HardwareItemInterface;
+        const hardwareID = action.payload.doc.id;
+        return { hardwareID, ...data };
+      });
+    })
+    .forEach(element => {
+      element.forEach(item => {
         this.hardwareItemsDB.doc(item.hardwareID).update({ status: 'available' });
       });
     });
+
   }
 
   // Loads data from the database in the form
@@ -66,7 +83,7 @@ export class FormDataService {
     // Get all records from collection 'hardware', order them by id, and only select where avaible if true
     this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'available'));
 
-    // Saves it to a readable list + adds the unique identifier to the list, so we can change values later
+    // Saves it to a readable list + adds the unique identifier to the list, so we can easily change values later
     this.hardwareItems = this.hardwareItemsDB.snapshotChanges().map(actions => {
       return actions.map(action => {
         const data = action.payload.doc.data() as HardwareItemInterface;
