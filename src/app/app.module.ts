@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { StartComponent } from './start/start.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PackageComponent } from './package/package.component';
+import { ToevoegenComponent } from './toevoegen/toevoegen.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PackageComponent } from './package/package.component';
     HeaderComponent,
     StartComponent,
     AuthenticationComponent,
-    PackageComponent
+    PackageComponent,
+    ToevoegenComponent
   ],
   imports: [
     BrowserModule,
