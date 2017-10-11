@@ -1,8 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-
 import { FormDataService } from '../form-data.service';
 
-import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 
 declare var $: any;
@@ -19,11 +17,26 @@ export class HardwareUitlenenFormComponent implements OnInit {
   studentnameModel = '';
   studentnumberModel = '';
 
-  hardwareItems: Observable<any> = this.formDataService.hardwareItems;
-  private hardwareList: {name: string; id: number; selected: boolean}[] = this.formDataService.hardwareList;
+  hardwareItems: Observable<any[]> = this.formDataService.hardwareItems;
+  private hardwareList: {name: string; id: number; selected: boolean; hardwareID: string}[] = this.formDataService.hardwareList;
 
   hasSomethingSelected(): boolean {
     return this.formDataService.hasSomethingSelected();
+  }
+
+  saveStatus(): void {
+    // Go through the hardware list, check if selected is true.
+    // Ifso, sent information to formDataService to handle the database coonection etc.
+    this.hardwareList.forEach(element => {
+      if (element.selected === true) {
+        this.formDataService.setLent(element.hardwareID, this.studentnumberModel);
+      }
+    });
+  }
+
+  reset(): void {
+    // Temporary for testing!!
+    this.formDataService.resetAvailability();
   }
 
   // This function is called when a user selects hardware. It will check if it is selected or not and changes values

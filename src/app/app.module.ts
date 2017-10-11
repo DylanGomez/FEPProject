@@ -16,6 +16,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { TestComponent } from './test/test.component';
 
 // This is the configuration for the firestorm database / authentification
 export const firebaseConfig = {
@@ -35,7 +36,8 @@ export const firebaseConfig = {
     StartComponent,
     AuthenticationComponent,
     PackageComponent,
-    HardwareUitlenenFormComponent
+    HardwareUitlenenFormComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
