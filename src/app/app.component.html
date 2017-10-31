@@ -1,13 +1,32 @@
+<!-- <app-sidebar></app-sidebar> -->
+
+<!-- <app-package></app-package> -->
+
+<!-- <app-hardware-uitlenen-form></app-hardware-uitlenen-form> -->
+
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/HomePage" routerLinkActive="active">Fep uitleen balie</a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/HomePage" routerLinkActive="active">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/HardwareUitlenen" routerLinkActive="active">Hardware uitlenen</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav" style="float: right">
+      <li>
+        <a href="#" class="nav-link pull-right" routerLink="/HomePage" routerLinkActive="active">Uitloggen</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div class="container">
-
-  <h1>
-    {{title}} 
-  </h1>
-  
-  <app-sidebar></app-sidebar>
-  
-  <app-package></app-package>
-  
-  <app-hardware-uitlenen-form></app-hardware-uitlenen-form>
-
+  <router-outlet></router-outlet>
 </div>

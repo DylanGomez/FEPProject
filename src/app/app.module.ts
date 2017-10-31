@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
+// Imports for components
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,7 +13,9 @@ import { StartComponent } from './start/start.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
+import { HomeComponent } from './home/home.component';
 
+// Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -27,6 +31,13 @@ export const firebaseConfig = {
   messagingSenderId: '441661095916'
 };
 
+// Defining paths for routing
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'HomePage', component: HomeComponent },
+  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent}
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +46,8 @@ export const firebaseConfig = {
     StartComponent,
     AuthenticationComponent,
     PackageComponent,
-    HardwareUitlenenFormComponent
+    HardwareUitlenenFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +56,10 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    RouterModule.forRoot(
+      appRoutes
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
