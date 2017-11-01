@@ -71,7 +71,6 @@ export class FormDataService {
 
   // Loads data from the database in the form
   loadData(hardwareList) {
-    // I really dont know why I need to itterate twice though this object, but hee.... It works!(first item is observerable)
     this.hardwareItems.forEach(function(hardwareItem) {
       hardwareItem.forEach(function(item) {
         // Adds hardware item to the list that keeps record of all the hardware items
