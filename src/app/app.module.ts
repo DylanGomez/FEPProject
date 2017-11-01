@@ -11,6 +11,22 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { PackageComponent } from './package/package.component';
 import { ToevoegenComponent } from './toevoegen/toevoegen.component';
 
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
+// This is the configuration for the firestorm database / authentification
+export const firebaseConfig = {
+  apiKey: 'AIzaSyBs99mDO2cmSZCM_TXwh5_lOA_Mn2nDlxk',
+  authDomain: 'hup1-603ab.firebaseapp.com',
+  databaseURL: 'https://hup1-603ab.firebaseio.com',
+  projectId: 'hup1-603ab',
+  storageBucket: 'hup1-603ab.appspot.com',
+  messagingSenderId: '441661095916'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +40,14 @@ import { ToevoegenComponent } from './toevoegen/toevoegen.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
