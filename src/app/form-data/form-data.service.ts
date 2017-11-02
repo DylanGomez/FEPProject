@@ -46,6 +46,13 @@ export class FormDataService {
       date: new Date(new Date().getTime()).toLocaleString()
     });
   }
+  public Aanmaken( id, name): void {
+    this.db.collection('hardware').add({
+      id: id,
+      name: name,
+      status: "available"
+    });
+  }
 
   public resetAvailability(): void {
     // This will reset ALL hardware items status and set it back to available.
