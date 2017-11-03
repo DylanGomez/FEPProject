@@ -12,7 +12,7 @@ export class ToevoegenComponent implements OnInit {
   testingMode: boolean = this.formDataService.testingMode;
   
   toevoegen(name: string, id: number): void{
-    this.formDataService.Aanmaken(id, name);
+    this.formDataService.Toevoegen(id, name);
   }
   constructor(private formDataService: FormDataService) {   }
 
