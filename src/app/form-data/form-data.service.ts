@@ -79,6 +79,24 @@ export class FormDataService {
     });
   }
 
+  // Making packages method
+  makePackage(hardwareID, id) {
+      this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
+
+  }
+
+  makePackages(hardwareList, packageName, packageID) {
+
+    this.hardwareItems.forEach(function(hardwareItem) {
+      hardwareItem.forEach(function(item) {
+        hardwareList.push({'name': packageName, 'id': packageID, 'selected': false, 'hardwareID': packageID});
+
+        // denk niet dat dit werkt maarja is niet anders want hij wilt hardwareDB niet herkennen...
+        hardwareList.doc(item.hardwareID).update({ status: 'not available' });
+      });
+    });
+  }
+
   constructor(public db: AngularFirestore) {
     // Get all records from collection 'hardware', order them by id, and only select where avaible if true
     this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'available'));

@@ -16,6 +16,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ModalService } from './_services/index';
+import { ModalComponent } from './_directives/index';
+
 
 // This is the configuration for the firestorm database / authentification
 export const firebaseConfig = {
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     StartComponent,
     AuthenticationComponent,
     PackageComponent,
-    HardwareUitlenenFormComponent
+    HardwareUitlenenFormComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [
+    ModalService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
