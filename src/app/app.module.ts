@@ -13,6 +13,7 @@ import { StartComponent } from './start/start.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
+import { HardwareDefectComponent } from './hardware-defect/hardware-defect.component';
 import { HomeComponent } from './home/home.component';
 
 // Imports for database related stuff
@@ -20,6 +21,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 // This is the configuration for the firestorm database / authentification
 export const firebaseConfig = {
@@ -35,7 +37,8 @@ export const firebaseConfig = {
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'HomePage', component: HomeComponent },
-  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent}
+  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
+  { path: 'HardwareDefect', component: HardwareDefectComponent}
 ];
 
 @NgModule({
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     AuthenticationComponent,
     PackageComponent,
     HardwareUitlenenFormComponent,
-    HomeComponent
+    HomeComponent,
+    HardwareDefectComponent
   ],
   imports: [
     BrowserModule,
