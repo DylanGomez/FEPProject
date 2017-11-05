@@ -15,6 +15,7 @@ import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
 import { HomeComponent } from './home/home.component';
 
+import { ToevoegenComponent } from'./toevoegen/toevoegen.component';
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
     PackageComponent,
     HardwareUitlenenFormComponent,
     HomeComponent,
-    ModalComponent
+    ModalComponent,
+    ToevoegenComponent
   ],
   imports: [
     BrowserModule,

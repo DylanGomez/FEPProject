@@ -20,6 +20,12 @@ export interface LendingsInterface {
   studentNumber: string;
 }
 
+export interface ToevoegenInterface {
+  id: number;
+  name: string;
+  status: string;
+}
+
 @Injectable()
 export class FormDataService {
 
@@ -111,4 +117,18 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
+  private hardwareItemsDB: AngularFirestoreCollection<ToevoegenInterface>;
+
+  // Firestore observable that contains our items and is capable of itteration
+  public hardwareItems: Observable<ToevoegenInterface[]>;
+
+  public Toevoegen(id, name): void {
+    this.db.collection('hardware').add({
+      id: id,
+      name: name,
+      status: 'available'
+    })
+  }
+
+  
 }
