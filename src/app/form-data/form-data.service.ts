@@ -48,6 +48,11 @@ export class FormDataService {
     });
   }
 
+    public setDefect(hardwareID, id): void {
+      this.hardwareItemsDB.doc(hardwareID).update({status: 'Broken'});
+
+ 
+    }
   public resetAvailability(): void {
     // This will reset ALL hardware items status and set it back to available.
     // This function can only be called if testingMode is on(due to button invisable)

@@ -1,3 +1,68 @@
-<p>
-  hardware-defect works!
-</p>
+<form class="mainForm">
+  <div class="form-group left">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th class="selectHardware">Selecteren</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.id}}">
+            <td scope="row">{{item.name}}</td>
+            <td class="selectHardware">
+              <button (click)="selectHardware(item.id)" class="btn btn-secondairy">Selecteer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+      <div class="right">
+      <div *ngIf="(hasSomethingSelected());else disabledButton">
+          <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      <ng-template #disabledButton>
+        <button type="submit" class="btn btn-primary" disabled>Defect registeren</button>
+        Nog niet alles is ingevuld!
+    </ng-template>
+
+</div>
+</form>
+
+
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Opslaan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Hardware ID</th>
+                <th>Product</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of hardwareList">
+                <tr *ngIf="item.selected" attr.hardwareID="{{item.id}}">
+                  <th scope="row" class="hardwareID">{{item.id}}</th>
+                  <td>{{item.name}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+          <hr>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
