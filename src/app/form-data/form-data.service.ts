@@ -29,6 +29,13 @@ export interface ToevoegenInterface {
 @Injectable()
 export class FormDataService {
 
+  // Toevoegen hardware Interfaces
+  private toevoegenhardwareItemsDB: AngularFirestoreCollection<ToevoegenInterface>;
+
+  // Firestore observable that contains our items and is capable of itteration
+  public toevoeghardwareItems: Observable<ToevoegenInterface[]>;
+
+
   // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
 
@@ -117,10 +124,7 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
-  private hardwareItemsDB: AngularFirestoreCollection<ToevoegenInterface>;
-
-  // Firestore observable that contains our items and is capable of itteration
-  public hardwareItems: Observable<ToevoegenInterface[]>;
+  
 
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
