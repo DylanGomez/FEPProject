@@ -20,6 +20,7 @@ export interface LendingsInterface {
   studentNumber: string;
 }
 
+<<<<<<< HEAD
 export interface ToevoegenInterface {
   id: number;
   name: string;
@@ -36,6 +37,11 @@ export class FormDataService {
   public toevoeghardwareItems: Observable<ToevoegenInterface[]>;
 
 
+=======
+@Injectable()
+export class FormDataService {
+
+>>>>>>> refs/remotes/origin/HardwareDefect
   // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
 
@@ -61,6 +67,14 @@ export class FormDataService {
     });
   }
 
+<<<<<<< HEAD
+=======
+    public setDefect(hardwareID, id): void {
+      this.hardwareItemsDB.doc(hardwareID).update({status: 'Broken'});
+
+ 
+    }
+>>>>>>> refs/remotes/origin/HardwareDefect
   public resetAvailability(): void {
     // This will reset ALL hardware items status and set it back to available.
     // This function can only be called if testingMode is on(due to button invisable)
@@ -92,6 +106,7 @@ export class FormDataService {
     });
   }
 
+<<<<<<< HEAD
   // Making packages method
   makePackage(hardwareID, id) {
       this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
@@ -110,6 +125,8 @@ export class FormDataService {
     });
   }
 
+=======
+>>>>>>> refs/remotes/origin/HardwareDefect
   constructor(public db: AngularFirestore) {
     // Get all records from collection 'hardware', order them by id, and only select where avaible if true
     this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'available'));
@@ -124,6 +141,7 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
+<<<<<<< HEAD
   
 
   public Toevoegen(id, name): void {
@@ -135,4 +153,6 @@ export class FormDataService {
   }
 
   
+=======
+>>>>>>> refs/remotes/origin/HardwareDefect
 }

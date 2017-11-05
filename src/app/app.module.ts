@@ -13,16 +13,25 @@ import { StartComponent } from './start/start.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
+<<<<<<< HEAD
 import { HomeComponent } from './home/home.component';
 
 import { ToevoegenComponent } from'./toevoegen/toevoegen.component';
+=======
+import { HardwareDefectComponent } from './hardware-defect/hardware-defect.component';
+import { HomeComponent } from './home/home.component';
+
+>>>>>>> refs/remotes/origin/HardwareDefect
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+<<<<<<< HEAD
 import { ModalService } from './_services/index';
 import { ModalComponent } from './_directives/index';
+=======
+>>>>>>> refs/remotes/origin/HardwareDefect
 
 
 // This is the configuration for the firestorm database / authentification
@@ -39,7 +48,12 @@ export const firebaseConfig = {
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'HomePage', component: HomeComponent },
+<<<<<<< HEAD
   { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent}
+=======
+  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
+  { path: 'HardwareDefect', component: HardwareDefectComponent}
+>>>>>>> refs/remotes/origin/HardwareDefect
 ];
 
 @NgModule({
@@ -52,8 +66,12 @@ const appRoutes: Routes = [
     PackageComponent,
     HardwareUitlenenFormComponent,
     HomeComponent,
+<<<<<<< HEAD
     ModalComponent,
     ToevoegenComponent
+=======
+    HardwareDefectComponent
+>>>>>>> refs/remotes/origin/HardwareDefect
   ],
   imports: [
     BrowserModule,
@@ -66,9 +84,12 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     )
+<<<<<<< HEAD
   ],
   providers: [
     ModalService
+=======
+>>>>>>> refs/remotes/origin/HardwareDefect
   ],
   bootstrap: [AppComponent]
 })
