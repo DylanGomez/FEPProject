@@ -1,29 +1,19 @@
-// Made by Guus
 import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
-export interface ToevoegenInterface {
-  id: number;
-  name: string;
-  status: string;
-}
+import { NavController, AlertController } from 'ionic-angular';
 
 @Injectable()
 export class FormDataService {
 
   public db = firebase.firestore();
   
-  // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
-
-  // Firestore collection
-  private hardwareItemsDB: AngularFirestoreCollection<ToevoegenInterface>;
-
-  // Firestore observable that contains our items and is capable of itteration
-  public hardwareItems: Observable<ToevoegenInterface[]>;
+  constructor(
+    af: AngularFirestore) {}
 
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
