@@ -69,7 +69,6 @@ export class FormDataService {
     // This will reset ALL hardware items status and set it back to available.
     // This function can only be called if testingMode is on(due to button invisable)
     // Delete when this goes live
-    console.log('Resetting available items');
     this.db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'not available'))
     .snapshotChanges().map(actions => {
       return actions.map(action => {
@@ -96,12 +95,11 @@ export class FormDataService {
     });
   }
 
-  // Making packages method
-  makePackage(hardwareID, id) {
-      this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
-
+  makePackages(packageName, packageID) {
+    this.db.collection('hardware').add({id: packageID, name: packageName, status: 'available', package: 'true' });
   }
 
+<<<<<<< HEAD
   makePackages(hardwareList, packageName, packageID) {
 
     this.hardwareItems.forEach(function(hardwareItem) {
@@ -110,6 +108,10 @@ export class FormDataService {
         hardwareList.doc(item.hardwareID).update({ status: 'not available' });
       });
     });
+=======
+  setStatusForPackage(hardwareID){
+    this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
+>>>>>>> feature/packages
   }
 
   constructor(public db: AngularFirestore) {
@@ -135,4 +137,8 @@ export class FormDataService {
       status: 'available'
     });
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/packages
 }

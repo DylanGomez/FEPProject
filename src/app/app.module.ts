@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 // Imports for components
 import { AppComponent } from './app.component';
@@ -14,7 +16,11 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
 import { HomeComponent } from './home/home.component';
+<<<<<<< HEAD
 import { HardwareDefectComponent } from './hardware-defect/hardware-defect.component';
+=======
+
+>>>>>>> feature/packages
 import { ToevoegenComponent } from './toevoegen/toevoegen.component';
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
@@ -40,7 +46,11 @@ const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'HomePage', component: HomeComponent },
   { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
+<<<<<<< HEAD
   { path: 'HardwareDefect', component: HardwareDefectComponent}
+=======
+  { path: 'Package', component: PackageComponent}
+>>>>>>> feature/packages
 ];
 
 @NgModule({
@@ -67,7 +77,8 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    ToastModule.forRoot()
   ],
   providers: [
     ModalService
