@@ -1,3 +1,4 @@
+<!--Made by Joost -->
 <form class="mainForm">
   <div class="form-group left">
     <table class="table table-striped">
@@ -19,7 +20,7 @@
   </div>
       <div class="right">
       <div *ngIf="(hasSomethingSelected());else disabledButton">
-          <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Submit</button>
+          <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Defect registeren</button>
       </div>
       <ng-template #disabledButton>
         <button type="submit" class="btn btn-primary" disabled>Defect registeren</button>
@@ -61,7 +62,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">Save changes</button>
+          <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">bevestig</button>
         </div>
       </div>
     </div>

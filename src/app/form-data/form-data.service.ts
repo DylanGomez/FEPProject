@@ -1,4 +1,4 @@
-// Made by Guus
+// Made by Guus & Joost
 import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -47,7 +47,7 @@ export class FormDataService {
       date: new Date(new Date().getTime()).toLocaleString()
     });
   }
-
+// Set hardware to defect in database.
     public setDefect(hardwareID, id): void {
       this.hardwareItemsDB.doc(hardwareID).update({status: 'Broken'});
 
