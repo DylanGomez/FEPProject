@@ -26,12 +26,19 @@
     "@angular2-material/card": "^2.0.0-alpha.8-3",
     "@angular2-material/core": "^2.0.0-alpha.8-3",
     "@angular2-material/icon": "^2.0.0-alpha.8-3",
+<<<<<<< HEAD
     "@types/jquery": "^3.2.15",
     "angularfire2": "^5.0.0-rc.2",
     "core-js": "^2.4.1",
     "firebase": "^4.5.0",
     "jquery": "^3.2.1",
     "ng2-toastr": "^4.1.2",
+=======
+    "angularfire2": "^5.0.0-rc.2",
+    "core-js": "^2.4.1",
+    "firebase": "^4.5.0",
+    "ionic-angular": "^3.8.0",
+>>>>>>> feature/HardwareToevoegen
     "promise-polyfill": "6.0.2",
     "rxjs": "^5.0.1",
     "ts-helpers": "^1.1.1",

@@ -1,10 +1,11 @@
-// Made by Guus
 import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { NavController, AlertController } from 'ionic-angular';
+
 
 export interface HardwareItemInterface {
   id: number;
@@ -119,6 +120,7 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
+
 
 
   public Toevoegen(id, name): void {
