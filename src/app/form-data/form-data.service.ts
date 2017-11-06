@@ -65,7 +65,6 @@ export class FormDataService {
     // This will reset ALL hardware items status and set it back to available.
     // This function can only be called if testingMode is on(due to button invisable)
     // Delete when this goes live
-    console.log('Resetting available items');
     this.db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'not available'))
     .snapshotChanges().map(actions => {
       return actions.map(action => {
@@ -92,22 +91,12 @@ export class FormDataService {
     });
   }
 
-  // Making packages method
-  makePackage(hardwareID, id) {
-      this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
-
+  makePackages(packageName, packageID) {
+    this.db.collection('hardware').add({id: packageID, name: packageName, status: 'available', package: 'true' });
   }
 
-  makePackages(hardwareList, packageName, packageID) {
-
-    this.hardwareItems.forEach(function(hardwareItem) {
-      hardwareItem.forEach(function(item) {
-        hardwareList.push({'name': packageName, 'id': packageID, 'selected': false, 'hardwareID': packageID});
-
-        // denk niet dat dit werkt maarja is niet anders want hij wilt hardwareDB niet herkennen...
-        hardwareList.doc(item.hardwareID).update({ status: 'not available' });
-      });
-    });
+  setStatusForPackage(hardwareID){
+    this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
   }
 
   constructor(public db: AngularFirestore) {
@@ -124,15 +113,14 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
-  
+
 
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
       id: id,
       name: name,
       status: 'available'
-    })
+    });
   }
 
-  
 }

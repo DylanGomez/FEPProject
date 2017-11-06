@@ -1,28 +1,40 @@
 <div class="col-md-6 col-md-offset-3">
-    <h1>Home</h1>
-    <p>{{bodyText}}</p>
-    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
-    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
+    
+    <button (click)="openModal('custom-modal-1')">Stel een pakket samen</button>
 </div>
 
 <modal id="custom-modal-1">
     <div class="modal">
         <div class="modal-body">
-            <h1>A Custom Modal!</h1>
-            <p>
-                Home page text: <input type="text" [(ngModel)]="bodyText" />
-            </p>
-            <button (click)="closeModal('custom-modal-1');">Close</button>
-        </div>
-    </div>
-    <div class="modal-background"></div>
-</modal>
+            <h1>Selecteer items!</h1>
 
-<modal id="custom-modal-2">
-    <div class="modal">
-        <div class="modal-body">
-            <h1 style="height:1000px">A Tall Custom Modal!</h1>
-            <button (click)="closeModal('custom-modal-2');">Close</button>
+            <div class="form-group left">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="selectHardware">Selecteren</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.id}}">
+                            <td scope="row">{{item.name}}</td>
+                            <td class="selectHardware">
+                                <button (click)="selectHardware(item.id)" class="btn btn-secondairy">Selecteer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <label for="PackageName">Package name</label>
+            <input type="text" class="form-control" id="PackageName" name="PackageName" placeholder="Name" [(ngModel)]="packageModel"
+                #packageName="ngModel" required>
+            <label for="PackageID">Package ID</label>
+            <input type="text" class="form-control" id="PackageID" name="PackageID" placeholder="ID" [(ngModel)]="packageIDModel" #packageID="ngModel"
+                required>
+            <button (click)="makePackage()"> Pakket toevoegen </button>
+            <button (click)="closeModal('custom-modal-1');">Close</button>
         </div>
     </div>
     <div class="modal-background"></div>

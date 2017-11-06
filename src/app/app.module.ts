@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+
 
 // Imports for components
 import { AppComponent } from './app.component';
@@ -15,7 +17,7 @@ import { PackageComponent } from './package/package.component';
 import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware-uitlenen-form.component';
 import { HomeComponent } from './home/home.component';
 
-import { ToevoegenComponent } from'./toevoegen/toevoegen.component';
+import { ToevoegenComponent } from './toevoegen/toevoegen.component';
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -39,7 +41,8 @@ export const firebaseConfig = {
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'HomePage', component: HomeComponent },
-  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent}
+  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
+  { path: 'Package', component: PackageComponent}
 ];
 
 @NgModule({
@@ -65,7 +68,8 @@ const appRoutes: Routes = [
     AngularFirestoreModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    ToastModule.forRoot()
   ],
   providers: [
     ModalService

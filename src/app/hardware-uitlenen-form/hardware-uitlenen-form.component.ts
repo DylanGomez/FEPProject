@@ -45,7 +45,7 @@ export class HardwareUitlenenFormComponent implements OnInit {
   }
 
   // This function is called when a user selects hardware. It will check if it is selected or not and changes values
-  private selectHardware(id: number) {
+   selectHardware(id: number) {
     // Filter through array list and only selecting the element from which the id is the same as the given id
     const element = this.hardwareList.filter(x => x.id === id)[0];
     element.selected = !element.selected;
