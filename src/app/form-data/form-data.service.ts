@@ -95,24 +95,15 @@ export class FormDataService {
     });
   }
 
-  makePackages(packageName, packageID) {
+
+ makePackages(packageName, packageID) {
     this.db.collection('hardware').add({id: packageID, name: packageName, status: 'available', package: 'true' });
   }
 
-<<<<<<< HEAD
-  makePackages(hardwareList, packageName, packageID) {
-
-    this.hardwareItems.forEach(function(hardwareItem) {
-      hardwareItem.forEach(function(item) {
-        hardwareList.push({'name': packageName, 'id': packageID, 'selected': false, 'hardwareID': packageID});
-        hardwareList.doc(item.hardwareID).update({ status: 'not available' });
-      });
-    });
-=======
   setStatusForPackage(hardwareID){
     this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
->>>>>>> feature/packages
   }
+
 
   constructor(public db: AngularFirestore) {
     // Get all records from collection 'hardware', order them by id, and only select where avaible if true
@@ -137,8 +128,4 @@ export class FormDataService {
       status: 'available'
     });
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/packages
 }
