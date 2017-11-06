@@ -43,7 +43,9 @@ const appRoutes: Routes = [
   { path: 'HomePage', component: HomeComponent },
   { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
   { path: 'HardwareDefect', component: HardwareDefectComponent},
-  { path: 'Package', component: PackageComponent}
+  { path: 'Package', component: PackageComponent},
+  { path: 'HardwareToevoegen', component: ToevoegenComponent}
+  
 ];
 
 @NgModule({
