@@ -1,68 +1,58 @@
 <form class="mainForm">
+  <br>
+  <br>
+  <br>
+  <H2>Voer hier uw gegevens in om hardware te lenen!</H2>
+  <br>
   <div class="form-group left">
     <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th class="selectHardware">Selecteren</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
-            <td scope="row">{{item.name}}</td>
-            <td class="selectHardware">
-              <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="selectHardware">Selecteren</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
+          <td scope="row">{{item.name}}</td>
+          <td class="selectHardware">
+            <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="right">
-      <div class="form-group">
-        <label for="StudentName">Student naam</label>
-        <input 
-          type="text" 
-          class="form-control" 
-          id="StudentName"
-          name="StudentName"
-          placeholder="John Doe"
-          [(ngModel)]="studentnameModel"
-          #studentname="ngModel"
-          required
-        >
-      </div>
-      <div class="form-group">
-          <label for="StudentNumber">Student nummer</label>
-          <input 
-            type="number" 
-            class="form-control" 
-            id="StudentNumber"
-            name="StudentNumber"
-            placeholder="123456"
-            [(ngModel)]="studentnumberModel"
-            #studentnumber="ngModel"
-            required
-          >
-      </div>
-
-      <div *ngIf="(studentname.valid && studentnumber.valid && hasSomethingSelected());else disabledButton">
-          <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Submit</button>
-      </div>
-      <ng-template #disabledButton>
-          <button type="submit" class="btn btn-primary" disabled>Toevoegen</button>
-          Nog niet alles is ingevuld!
-      </ng-template>
-
-      <div *ngIf="testingMode">
-        <br /> <br />
-        <button class="btn btn-danger" (click)="reset()">Reset</button>
-        Reset alle database documents status naar available
-      </div>
-      
-
+    <div class="form-group">
+      <label for="StudentName">Student naam</label>
+      <input type="text" class="form-control" id="StudentName" name="StudentName" placeholder="John Doe" [(ngModel)]="studentnameModel"
+        #studentname="ngModel" required>
     </div>
-  
+    <div class="form-group">
+      <label for="StudentNumber">Student nummer</label>
+      <input type="number" class="form-control" id="StudentNumber" name="StudentNumber" placeholder="123456" [(ngModel)]="studentnumberModel"
+        #studentnumber="ngModel" required>
+    </div>
+
+    <div *ngIf="(studentname.valid && studentnumber.valid && hasSomethingSelected());else disabledButton">
+      <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <ng-template #disabledButton>
+      <button type="submit" class="btn btn-primary" disabled>Toevoegen</button>
+      Nog niet alles is ingevuld!
+    </ng-template>
+
+    <div *ngIf="testingMode">
+      <br />
+      <br />
+      <button class="btn btn-danger" (click)="reset()">Reset</button>
+      Reset alle database documents status naar available
+    </div>
+
+
+  </div>
+
 </form>
 
 <!-- modal -->
@@ -92,14 +82,14 @@
             </ng-container>
           </tbody>
         </table>
-		    <hr>
+        <hr>
         <p>
           Student: {{studentnameModel}}
         </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveStatus()">Save changes</button>
       </div>
     </div>
   </div>
