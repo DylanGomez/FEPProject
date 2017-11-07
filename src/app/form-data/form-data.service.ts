@@ -61,7 +61,7 @@ export class FormDataService {
     });
   }
 
-  public setDefect(hardwareID, id): void {
+  public setDefect(hardwareID): void {
     this.hardwareItemsDB.doc(hardwareID).update({ status: 'Broken' });
   }
 
