@@ -35,7 +35,7 @@ export class PackageComponent implements OnInit {
     // Used in a front end check. Will return true if the user has an item selected
 
     ngOnInit() {
-        this.titleService.setTitle("Package toevoegen");
+        this.titleService.setTitle('Package toevoegen');
     }
 
     openModal(id: string) {

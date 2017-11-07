@@ -19,7 +19,7 @@ export class HardwareDefectComponent implements OnInit {
 
   saveStatus(): void {
     this.hardwareList.filter(x => x.selected === true).forEach(element => {
-      this.formDataService.setDefect(element.hardwareID)
+      this.formDataService.setDefect(element.hardwareID);
     });
     this.router.navigate(['/HomePage']);
   }
@@ -29,14 +29,15 @@ export class HardwareDefectComponent implements OnInit {
     const element = this.hardwareList.filter(x => x.hardwareID === hardwareid)[0];
     element.selected = !element.selected;
     // Change button color & text
-    $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
+    $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success')
+    .text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
   }
 
   constructor(private formDataService: FormDataService,
     private router: Router, private titleService: Title
   ) { }
   ngOnInit() {
-    this.titleService.setTitle("Defect melden");
+    this.titleService.setTitle('Defect melden');
 
   }
 

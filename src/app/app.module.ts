@@ -25,6 +25,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ModalService } from './_services/index';
 import { ModalComponent } from './_directives/index';
+import { OverzichtComponent } from './overzicht/overzicht.component';
 
 
 // This is the configuration for the firestorm database / authentification
@@ -43,7 +44,7 @@ const appRoutes: Routes = [
   { path: 'HomePage', component: HomeComponent },
   { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent },
   { path: 'HardwareDefect', component: HardwareDefectComponent },
-  { path: 'Package', component: PackageComponent },
+  { path: 'Overzicht', component: OverzichtComponent },
   { path: 'HardwareToevoegen', component: ToevoegenComponent }
 
 ];
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ModalComponent,
     ToevoegenComponent,
-    HardwareDefectComponent
+    HardwareDefectComponent,
+    OverzichtComponent
   ],
   imports: [
     BrowserModule,
