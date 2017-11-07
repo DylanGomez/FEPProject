@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 
 // Imports for components
@@ -18,7 +18,6 @@ import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware
 import { HomeComponent } from './home/home.component';
 import { HardwareDefectComponent } from './hardware-defect/hardware-defect.component';
 import { ToevoegenComponent } from './toevoegen/toevoegen.component';
-
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -42,11 +41,11 @@ export const firebaseConfig = {
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'HomePage', component: HomeComponent },
-  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent},
-  { path: 'HardwareDefect', component: HardwareDefectComponent},
-  { path: 'Package', component: PackageComponent},
-  { path: 'HardwareToevoegen', component: ToevoegenComponent}
-  
+  { path: 'HardwareUitlenen', component: HardwareUitlenenFormComponent },
+  { path: 'HardwareDefect', component: HardwareDefectComponent },
+  { path: 'Package', component: PackageComponent },
+  { path: 'HardwareToevoegen', component: ToevoegenComponent }
+
 ];
 
 @NgModule({

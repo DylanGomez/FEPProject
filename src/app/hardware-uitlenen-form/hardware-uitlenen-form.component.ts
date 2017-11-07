@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormDataService } from '../form-data/form-data.service';
 import { RouterModule, Routes, Router } from '@angular/router';
-
+import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 
 declare var $: any;
@@ -27,7 +27,7 @@ export class HardwareUitlenenFormComponent implements OnInit {
 
   // Used in a front end check. Will return true if the user has an item selected
   hasSomethingSelected(): boolean {
-    return this.formDataService.hardwareList.some(function(a){ return a.selected; });
+    return this.formDataService.hardwareList.some(function (a) { return a.selected; });
   }
 
   // We need to reload the tablet or something after this.
@@ -48,7 +48,7 @@ export class HardwareUitlenenFormComponent implements OnInit {
   }
 
   // This function is called when a user selects hardware. It will check if it is selected or not and changes values
-   selectHardware(hardwareid: string) {
+  selectHardware(hardwareid: string) {
     // Filter through array list and only selecting the element from which the id is the same as the given id
     const element = this.hardwareList.filter(x => x.hardwareID === hardwareid)[0];
     element.selected = !element.selected;
@@ -57,8 +57,11 @@ export class HardwareUitlenenFormComponent implements OnInit {
   }
 
   // Constructor. Constructs things.
-  constructor(private formDataService: FormDataService, private router: Router) { }
+  constructor(private formDataService: FormDataService,
+    private router: Router, private titleService: Title) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.titleService.setTitle("Hardware uitlenen");
+  }
 
 }

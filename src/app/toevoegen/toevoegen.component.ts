@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormDataService } from '../form-data/form-data.service';
 import { Observable } from 'rxjs/Observable';
 import { ModalService } from '../_services/index';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,6 +14,7 @@ import { ModalService } from '../_services/index';
 })
 
 export class ToevoegenComponent implements OnInit {
+
   testingMode: boolean = this.formDataService.testingMode;
   ID = "";
   name = "";
@@ -30,9 +33,11 @@ export class ToevoegenComponent implements OnInit {
   }
   //haalt de formdataservice op
   constructor(private formDataService: FormDataService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router, private titleService: Title
   ) { }
   ngOnInit() {
+    this.titleService.setTitle("Toevoegen");
   }
   openModal(id: string) {
     //opent het modal venster

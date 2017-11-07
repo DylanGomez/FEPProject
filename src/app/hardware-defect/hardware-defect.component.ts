@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormDataService } from '../form-data/form-data.service';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 declare var $: any;
 
 @Component({
@@ -13,7 +14,7 @@ export class HardwareDefectComponent implements OnInit {
   private hardwareList = this.formDataService.hardwareList;
 
   hasSomethingSelected(): boolean {
-    return this.formDataService.hardwareList.some(function(a){ return a.selected; });
+    return this.formDataService.hardwareList.some(function (a) { return a.selected; });
   }
 
   saveStatus(): void {
@@ -31,8 +32,12 @@ export class HardwareDefectComponent implements OnInit {
     $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
   }
 
-  constructor(private formDataService: FormDataService, private router: Router) { }
+  constructor(private formDataService: FormDataService,
+    private router: Router, private titleService: Title
+  ) { }
   ngOnInit() {
+    this.titleService.setTitle("Defect melden");
+
   }
 
 }
