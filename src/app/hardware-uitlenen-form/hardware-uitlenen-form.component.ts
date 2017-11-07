@@ -1,5 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormDataService } from '../form-data/form-data.service';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -36,6 +37,8 @@ export class HardwareUitlenenFormComponent implements OnInit {
     this.hardwareList.filter(x => x.selected === true).forEach(element => {
       this.formDataService.setLent(element.hardwareID, element.id, this.studentnumberModel, this.studentnameModel);
     });
+    // Return to the homepage
+    this.router.navigate(['/HomePage']);
   }
 
   reset(): void {
@@ -54,7 +57,7 @@ export class HardwareUitlenenFormComponent implements OnInit {
   }
 
   // Constructor. Constructs things.
-  constructor(private formDataService: FormDataService) { }
+  constructor(private formDataService: FormDataService, private router: Router) { }
 
   ngOnInit() {}
 

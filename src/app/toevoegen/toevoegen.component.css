@@ -1,4 +1,4 @@
-input[type=text], select {
+input {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -19,6 +19,10 @@ button[class="goed"] {
     cursor: pointer;
     float:right;
 }
+
+button[class="goed"]:hover {
+    background-color: #2D00AA;
+}
 button[class="fout"] {
     width: 25%;
     background-color: rgb(119, 119, 119);
@@ -31,23 +35,15 @@ button[class="fout"] {
     float:right;
 }
 
-button[class="goed"]:hover {
-    background-color: #2D00AA;
-}
 
 .divv {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
-    display: inline-block;
-}
-input[type=number], select {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 50px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
     box-sizing: border-box;
 }
 div[class=error]{
