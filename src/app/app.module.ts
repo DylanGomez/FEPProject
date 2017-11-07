@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastModule} from 'ng2-toastr/ng2-toastr';
 
 
 // Imports for components
