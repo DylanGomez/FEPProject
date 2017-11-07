@@ -1,0 +1,20 @@
+<div class="divv">
+  <div *ngIf="myid.errors">
+    <div [hidden]="!myid.errors.required" class="error">
+      Vul een ID in!
+    </div>
+  </div>
+  <div *ngIf="myname.errors">
+    <div [hidden]="!myname.errors.required" class="error">
+      Vul een naam in!
+    </div>
+  </div>
+  <input type="number" id="ID" placeholder="ID" [(ngModel)]="ID" #myid="ngModel" required>
+  <input type="text" id="name" placeholder="Naam" [(ngModel)]="name" #myname="ngModel" required>
+  <div >
+    <button [hidden]="myid.errors || myname.errors" (click)="toevoegen()" class="goed" type="submit">Opslaan</button>
+  </div>
+  <div >
+      <button [hidden]="!myid.errors && !myname.errors" class="fout">Opslaan</button>
+    </div>
+</div>
