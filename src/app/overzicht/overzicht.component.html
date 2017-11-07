@@ -1,18 +1,21 @@
-       <div class="form-group left">
+    <div>
+        <app-package></app-package>
+       <div class="form-group left package">
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Product</th>
-                            <th class="selectHardware">Selecteren</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
+                        <tr *ngFor="let item of allHardwareList" attr.hardwareID="{{item.hardwareID}}">
+                            <td scope="row">{{item.id}}</td>
                             <td scope="row">{{item.name}}</td>
-                            <td class="selectHardware">
-                                <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
-                            </td>
+                            <td scope="row">{{item.status}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div>

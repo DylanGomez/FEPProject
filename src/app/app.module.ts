@@ -26,6 +26,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ModalService } from './_services/index';
 import { ModalComponent } from './_directives/index';
 import { OverzichtComponent } from './overzicht/overzicht.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 // This is the configuration for the firestorm database / authentification
@@ -75,7 +76,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
     ),
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     ModalService

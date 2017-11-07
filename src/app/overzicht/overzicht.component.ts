@@ -3,25 +3,18 @@ import { FormDataService } from '../form-data/form-data.service';
 import { HardwareUitlenenFormComponent } from '../hardware-uitlenen-form/hardware-uitlenen-form.component';
 
 @Component({
+  providers: [FormDataService],
   selector: 'app-overzicht',
   templateUrl: './overzicht.component.html',
-  styleUrls: ['./overzicht.component.css']
+  styleUrls: ['./overzicht.component.scss']
 })
 export class OverzichtComponent implements OnInit {
 
-  private hardwareList = this.formDataService.hardwareList;
+  private allHardwareList = this.formDataService.allHardwareList;
 
-  constructor(private formDataService: FormDataService, private hardwareUitlenen: HardwareUitlenenFormComponent) { }
+  constructor(private formDataService: FormDataService) { }
 
   ngOnInit() {
   }
-
-  private selectHardware(hardwareid: string) {
-        this.hardwareUitlenen.selectHardware(hardwareid);
-        this.hardwareList.filter(x => x.selected === true).forEach(element => {
-            this.formDataService.setStatusForPackage(element.hardwareID);
-        });
-    }
-
 
 }

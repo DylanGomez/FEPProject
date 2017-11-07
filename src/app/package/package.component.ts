@@ -5,6 +5,10 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { HardwareUitlenenFormComponent } from '../hardware-uitlenen-form/hardware-uitlenen-form.component';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from '../app.component';
+
+
 
 @Component({
     providers: [FormDataService, HardwareUitlenenFormComponent],
@@ -14,13 +18,16 @@ import { Router } from '@angular/router';
     moduleId: module.id.toString()
 })
 
-export class PackageComponent implements OnInit {
+export class PackageComponent implements OnInit{
     private bodyText: string;
 
     private hardwareList = this.formDataService.hardwareList;
 
     packageModel = '';
     packageIDModel = '';
+    isRequired = true;
+
+    @ViewChild('completed') packageForm;
 
 
     constructor(private modalService: ModalService,
@@ -28,9 +35,8 @@ export class PackageComponent implements OnInit {
         public toastr: ToastsManager,
         vcr: ViewContainerRef,
         private router: Router, private titleService: Title,
-        private hardwareUitlenen: HardwareUitlenenFormComponent) {
-        this.toastr.setRootViewContainerRef(vcr);
-    }
+        private hardwareUitlenen: HardwareUitlenenFormComponent
+        ) { this.toastr.setRootViewContainerRef(vcr); }
 
     // Used in a front end check. Will return true if the user has an item selected
 

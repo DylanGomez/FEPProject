@@ -53,7 +53,8 @@ export class HardwareUitlenenFormComponent implements OnInit {
     const element = this.hardwareList.filter(x => x.hardwareID === hardwareid)[0];
     element.selected = !element.selected;
     // Change button color & text
-    $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
+    $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success')
+    .text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
   }
 
   // Constructor. Constructs things.
@@ -61,7 +62,7 @@ export class HardwareUitlenenFormComponent implements OnInit {
     private router: Router, private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle("Hardware uitlenen");
+    this.titleService.setTitle('Hardware uitlenen');
   }
 
 }

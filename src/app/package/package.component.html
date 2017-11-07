@@ -6,7 +6,7 @@
 <modal id="custom-modal-1">
     <div class="modal">
         <div class="modal-body">
-            <h1>Selecteer items!</h1>
+            <h1>Selecteer items die toegevoegd moeten worden!</h1>
 
             <div class="form-group left">
                 <table class="table table-striped">
@@ -26,15 +26,18 @@
                     </tbody>
                 </table>
             </div>
-
-            <label for="PackageName">Package name</label>
-            <input type="text" class="form-control" id="PackageName" name="PackageName" placeholder="Name" [(ngModel)]="packageModel"
-                #packageName="ngModel" required>
-            <label for="PackageID">Package ID</label>
-            <input type="text" class="form-control" id="PackageID" name="PackageID" placeholder="ID" [(ngModel)]="packageIDModel" #packageID="ngModel"
-                required>
-            <button (click)="makePackage()"> Pakket toevoegen </button>
-            <button (click)="closeModal('custom-modal-1');">Close</button>
+            <form #completed name="completed">
+                <label for="PackageName">Package name</label>
+                <input type="text" class="form-control" id="PackageName" name="PackageName" placeholder="Name" [(ngModel)]="packageModel"
+                    #packageName="ngModel" required mdInput>
+                <label for="PackageID">Package ID</label>
+                <input type="number" class="form-control" id="PackageID" name="PackageID" placeholder="ID" [(ngModel)]="packageIDModel" #packageID="ngModel"
+                    required mdInput>
+            </form>
+        <div class="buttons" *ngIf="packageModel && packageIDModel">
+            <button class="btn btn-primary" (click)="makePackage()" [disabled]="packageForm.completed"> Pakket toevoegen </button>
+        </div>
+            <button class="btn btn-secondary" (click)="closeModal('custom-modal-1');">Close</button>
         </div>
     </div>
     <div class="modal-background"></div>
