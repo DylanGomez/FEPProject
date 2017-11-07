@@ -52,8 +52,8 @@ export class PackageComponent implements OnInit {
         this.closeModal('custom-modal-1');
     }
 
-    private selectHardware(id: number) {
-        this.hardwareUitlenen.selectHardware(id);
+    private selectHardware(hardwareid: string) {
+        this.hardwareUitlenen.selectHardware(hardwareid);
     }
 
   hasSomethingSelected() {
