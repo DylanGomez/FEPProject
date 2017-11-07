@@ -11,6 +11,7 @@ export interface HardwareItemInterface {
   id: number;
   name: string;
   status: string;
+  package: string;
   hardwareID?: string;
 }
 
@@ -46,8 +47,8 @@ export class FormDataService {
   public hardwareItems: Observable<HardwareItemInterface[]>;
 
   // Custom list containing custom data which can be used in a front end table
-  public hardwareList: { name: string; id: number; selected: boolean; hardwareID: string; }[] = [];
-  public allHardwareList: { name: string; id: number; selected: boolean; hardwareID: string; }[] = [];
+  public hardwareList: { name: string; id: number; selected: boolean; hardwareID: string; package: string; }[] = [];
+  public allHardwareList: { name: string; id: number; selected: boolean; hardwareID: string; package: string; }[] = [];
 
 
   public setLent(hardwareID, id, studentnumber, studentname): void {
@@ -92,7 +93,8 @@ export class FormDataService {
     this.hardwareItems.forEach(function (hardwareItem) {
       hardwareItem.forEach(function (item) {
         // Adds hardware item to the list that keeps record of all the hardware items
-        hardwareList.push({ 'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID, 'status': item.status });
+        hardwareList.push({ 'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID, 'status': item.status
+        , 'package': item.package });
     });
     });
   }

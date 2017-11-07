@@ -12,12 +12,16 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
+
                             <th>Product</th>
+
                             <th class="selectHardware">Selecteren</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
+                            <td scope="row">{{item.id}}</td>
                             <td scope="row">{{item.name}}</td>
                             <td class="selectHardware">
                                 <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
