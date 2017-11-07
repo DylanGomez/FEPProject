@@ -1,4 +1,5 @@
 <div class="divv">
+    <H2>Voeg hier uw nieuwe hardware toe!</H2>    
   <div *ngIf="myid.errors">
     <div [hidden]="!myid.errors.required" class="error">
       Vul een ID in!
@@ -11,6 +12,22 @@
   </div>
   <input type="number" id="ID" placeholder="ID" [(ngModel)]="ID" #myid="ngModel" required>
   <input type="text" id="name" placeholder="Naam" [(ngModel)]="name" #myname="ngModel" required>
-  <button [hidden]="myid.errors || myname.errors" (click)="toevoegen()" class="goed" type="submit">Opslaan</button>
+  <button [hidden]="myid.errors || myname.errors" (click)="openModal('custom-modal-5')" class="goed" type="submit">Opslaan</button>
   <button [hidden]="!myid.errors && !myname.errors" class="fout">Opslaan</button>
 </div>
+
+
+<modal id="custom-modal-5" >
+  <div class="modal">
+    <div class="modal-body">
+      <h1>Alles goed ingevoerd?</h1>
+      <br>
+      <td><h5>ID: <u id="IDout"></u> </h5></td>
+      <br>
+      <td><h5>Name: <u id="nameout"></u> </h5></td>
+      <button class="goed" (click)="toevoegen()" (click)="closeModal('custom-modal-5');">Toevoegen </button>
+      <button class="closebtn" (click)="closeModal('custom-modal-5');">Close</button>
+    </div>
+  </div>
+  <div class="modal-background"></div>
+</modal>

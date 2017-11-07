@@ -1,9 +1,3 @@
-<!-- <app-sidebar></app-sidebar> -->
-
-<!-- <app-package></app-package> -->
-
-<!-- <app-hardware-uitlenen-form></app-hardware-uitlenen-form> -->
-
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,30 +9,44 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/HomePage" routerLinkActive="active">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn();">
         <a class="nav-link" routerLink="/HardwareUitlenen" routerLinkActive="active">Hardware uitlenen</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/HardwareDefect" routerLinkActive="active">Hardware Defect melden</a>
+        <a class="nav-link" *ngIf="isLoggedIn();" routerLink="/HardwareDefect" routerLinkActive="active">Hardware Defect melden</a>
       </li>
 
        <li class="nav-item">
-        <a class="nav-link" routerLink="/Package" routerLinkActive="active">Pakketje maken</a>
+        <a class="nav-link" *ngIf="isLoggedIn();" routerLink="/Package" routerLinkActive="active">Pakketje maken</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/HardwareToevoegen" routerLinkActive="active">Hardware Toevoegen</a>
+        <a class="nav-link" *ngIf="isLoggedIn();" routerLink="/HardwareToevoegen" routerLinkActive="active">Hardware Toevoegen</a>
       </li>
     </ul>
     <ul class="nav navbar-nav" style="float: right">
-      <li>
-        <a href="#" class="nav-link pull-right" routerLink="/HomePage" routerLinkActive="active">Uitloggen</a>
-      </li>
+      <div *ngIf="isLoggedIn();else notLogedIn">
+        <li>
+          <a routerLink="/" routerLinkActive="active" class="nav-link pull-right" (click)="logout()">Uitloggen</a>
+        </li>
+      </div>
+        
+      <ng-template #notLogedIn>
+        <li>
+          <a routerLink="/" routerLinkActive="active" class="nav-link pull-right" (click)="login()">Inloggen</a>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>
 
-<div class="container">
+<div class="container" *ngIf="isLoggedIn();else notLogedInContainer">
   <router-outlet></router-outlet>
 </div>
+
+<ng-template #notLogedInContainer>
+    <div class="container">
+      U bent niet ingelogd!
+    </div>
+</ng-template>
 
