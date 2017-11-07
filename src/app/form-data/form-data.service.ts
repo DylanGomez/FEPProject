@@ -36,7 +36,6 @@ export class FormDataService {
   // Firestore observable that contains our items and is capable of itteration
   public toevoeghardwareItems: Observable<ToevoegenInterface[]>;
 
-
   // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
 
