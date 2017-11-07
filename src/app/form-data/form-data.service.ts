@@ -61,7 +61,7 @@ export class FormDataService {
     });
   }
 
-  public setDefect(hardwareID, id): void {
+  public setDefect(hardwareID): void {
     this.hardwareItemsDB.doc(hardwareID).update({ status: 'Broken' });
   }
 
@@ -121,12 +121,13 @@ export class FormDataService {
   }
 
 
-
+  //Toevoegen van ID en Naam, plus static status en package aan de collection hardware in FireStore
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
       id: id,
       name: name,
-      status: 'available'
+      status: 'available',
+      package: 'false'
     });
   }
 }

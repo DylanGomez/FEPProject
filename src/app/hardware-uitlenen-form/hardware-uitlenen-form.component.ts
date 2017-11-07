@@ -48,12 +48,12 @@ export class HardwareUitlenenFormComponent implements OnInit {
   }
 
   // This function is called when a user selects hardware. It will check if it is selected or not and changes values
-   selectHardware(id: number) {
+   selectHardware(hardwareid: string) {
     // Filter through array list and only selecting the element from which the id is the same as the given id
-    const element = this.hardwareList.filter(x => x.id === id)[0];
+    const element = this.hardwareList.filter(x => x.hardwareID === hardwareid)[0];
     element.selected = !element.selected;
     // Change button color & text
-    $('tr[hardwareid=' + id + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
+    $('tr[hardwareid=' + hardwareid + '] button').toggleClass('btn-secondairy btn-success').text(element.selected ? 'Geselecteerd!' : 'Selecteer!');
   }
 
   // Constructor. Constructs things.

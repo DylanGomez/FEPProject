@@ -17,10 +17,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.id}}">
+                        <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
                             <td scope="row">{{item.name}}</td>
                             <td class="selectHardware">
-                                <button (click)="selectHardware(item.id)" class="btn btn-secondairy">Selecteer</button>
+                                <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
                             </td>
                         </tr>
                     </tbody>
