@@ -1,0 +1,115 @@
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button[class="goed"] {
+    width: 25%;
+    background-color: #5D97EE;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float:right;
+}
+
+button[class="goed"]:hover {
+    background-color: #2D00AA;
+}
+button[class="fout"] {
+    width: 25%;
+    background-color: rgb(119, 119, 119);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    float:right;
+}
+
+button[class="closebtn"] {
+    width: 25%;
+    background-color: rgb(119, 119, 119);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    float:left;
+}
+
+
+.divv {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 50px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+div[class=error]{
+    color:red;
+}
+
+modal {
+    /* modals are hidden by default */
+    display: inline-block;
+
+    .modal {
+        /* modal container fixed across whole screen */
+        position: fixed;
+        display: block;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        /* z-index must be higher than .modal-background */
+        z-index: 9000;
+        
+        /* enables scrolling for tall modals */
+        overflow: auto;
+
+        .modal-body {
+            padding: 20px;
+            background: #fff;
+            /* margin exposes part of the modal background */
+            margin: 5% 20%;
+            display: inline-block;
+            width: 60%;
+            
+        }
+    }
+
+    .modal-background {
+        /* modal background fixed across whole screen */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        
+        /* semi-transparent black  */
+        background-color: #000;
+        opacity: 0.75;
+        
+        /* z-index must be below .modal and above everything else  */
+        z-index: 900;
+    }
+}
+
+body.modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}
