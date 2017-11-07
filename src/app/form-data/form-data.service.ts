@@ -1,10 +1,11 @@
-// Made by Guus
 import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { NavController, AlertController } from 'ionic-angular';
+
 
 export interface HardwareItemInterface {
   id: number;
@@ -20,7 +21,6 @@ export interface LendingsInterface {
   studentNumber: string;
 }
 
-<<<<<<< HEAD
 export interface ToevoegenInterface {
   id: number;
   name: string;
@@ -36,12 +36,6 @@ export class FormDataService {
   // Firestore observable that contains our items and is capable of itteration
   public toevoeghardwareItems: Observable<ToevoegenInterface[]>;
 
-
-=======
-@Injectable()
-export class FormDataService {
-
->>>>>>> refs/remotes/origin/HardwareDefect
   // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
 
@@ -52,7 +46,7 @@ export class FormDataService {
   public hardwareItems: Observable<HardwareItemInterface[]>;
 
   // Custom list containing custom data which can be used in a front end table
-  public hardwareList: {name: string; id: number; selected: boolean; hardwareID: string;}[] = [];
+  public hardwareList: { name: string; id: number; selected: boolean; hardwareID: string; }[] = [];
 
   public setLent(hardwareID, id, studentnumber, studentname): void {
     // Update hardware list, set status to not available (hardwareID is the document key)
@@ -67,69 +61,53 @@ export class FormDataService {
     });
   }
 
-<<<<<<< HEAD
-=======
-    public setDefect(hardwareID, id): void {
-      this.hardwareItemsDB.doc(hardwareID).update({status: 'Broken'});
+  public setDefect(hardwareID, id): void {
+    this.hardwareItemsDB.doc(hardwareID).update({ status: 'Broken' });
+  }
 
- 
-    }
->>>>>>> refs/remotes/origin/HardwareDefect
   public resetAvailability(): void {
     // This will reset ALL hardware items status and set it back to available.
     // This function can only be called if testingMode is on(due to button invisable)
     // Delete when this goes live
-    console.log('Resetting available items');
-    this.db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'not available'))
-    .snapshotChanges().map(actions => {
-      return actions.map(action => {
-        const data = action.payload.doc.data() as HardwareItemInterface;
-        const hardwareID = action.payload.doc.id;
-        return { hardwareID, ...data };
+    this.db.collection('hardware', ref => ref.orderBy('id').where('status', '==', 'not available'))
+      .snapshotChanges().map(actions => {
+        return actions.map(action => {
+          const data = action.payload.doc.data() as HardwareItemInterface;
+          const hardwareID = action.payload.doc.id;
+          return { hardwareID, ...data };
+        });
+      })
+      .forEach(element => {
+        element.forEach(item => {
+          this.hardwareItemsDB.doc(item.hardwareID).update({ status: 'available' });
+        });
       });
-    })
-    .forEach(element => {
-      element.forEach(item => {
-        this.hardwareItemsDB.doc(item.hardwareID).update({ status: 'available' });
-      });
-    });
 
   }
 
   // Loads data from the database in the form
   loadData(hardwareList) {
-    this.hardwareItems.forEach(function(hardwareItem) {
-      hardwareItem.forEach(function(item) {
+    this.hardwareItems.forEach(function (hardwareItem) {
+      hardwareItem.forEach(function (item) {
         // Adds hardware item to the list that keeps record of all the hardware items
-        hardwareList.push({'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID});
+        hardwareList.push({ 'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID });
       });
     });
   }
 
-<<<<<<< HEAD
-  // Making packages method
-  makePackage(hardwareID, id) {
-      this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
 
+  makePackages(packageName, packageID) {
+    this.db.collection('hardware').add({ id: packageID, name: packageName, status: 'available', package: 'true' });
   }
 
-  makePackages(hardwareList, packageName, packageID) {
-
-    this.hardwareItems.forEach(function(hardwareItem) {
-      hardwareItem.forEach(function(item) {
-        hardwareList.push({'name': packageName, 'id': packageID, 'selected': false, 'hardwareID': packageID});
-
-        // denk niet dat dit werkt maarja is niet anders want hij wilt hardwareDB niet herkennen...
-        hardwareList.doc(item.hardwareID).update({ status: 'not available' });
-      });
-    });
+  setStatusForPackage(hardwareID) {
+    this.hardwareItemsDB.doc(hardwareID).update({ status: 'not available' });
   }
 
-=======
->>>>>>> refs/remotes/origin/HardwareDefect
+
   constructor(public db: AngularFirestore) {
     // Get all records from collection 'hardware', order them by id, and only select where avaible if true
-    this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id') .where('status', '==', 'available'));
+    this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id').where('status', '==', 'available'));
 
     // Saves it to a readable list + adds the unique identifier to the list, so we can easily change values later
     this.hardwareItems = this.hardwareItemsDB.snapshotChanges().map(actions => {
@@ -141,18 +119,14 @@ export class FormDataService {
     });
     this.loadData(this.hardwareList);
   }
-<<<<<<< HEAD
-  
+
+
 
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
       id: id,
       name: name,
       status: 'available'
-    })
+    });
   }
-
-  
-=======
->>>>>>> refs/remotes/origin/HardwareDefect
 }

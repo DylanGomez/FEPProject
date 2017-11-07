@@ -8,11 +8,19 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './toevoegen.component.html',
   styleUrls: ['./toevoegen.component.css']
 })
+
 export class ToevoegenComponent implements OnInit {
   testingMode: boolean = this.formDataService.testingMode;
-  
-  toevoegen(name: string, id: number): void{
-    this.formDataService.Toevoegen(id, name);
+  ID = "";
+  name = "";
+
+  public toevoegen(): void{
+    var ID = parseFloat((<HTMLInputElement>document.getElementById("ID")).value);
+    var name = (<HTMLInputElement>document.getElementById("name")).value;    
+    this.formDataService.Toevoegen(ID, name);
+    this.ID = "";
+    this.name = "";
+    
   }
   constructor(private formDataService: FormDataService) {   }
 
