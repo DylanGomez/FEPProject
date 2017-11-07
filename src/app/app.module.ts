@@ -18,6 +18,7 @@ import { HardwareUitlenenFormComponent } from './hardware-uitlenen-form/hardware
 import { HomeComponent } from './home/home.component';
 import { HardwareDefectComponent } from './hardware-defect/hardware-defect.component';
 import { ToevoegenComponent } from './toevoegen/toevoegen.component';
+
 // Imports for database related stuff
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
