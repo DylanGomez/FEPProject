@@ -1,5 +1,35 @@
+
 input {
     width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    
+}
+input#Aantal, input#Aankoopprijs  {
+    width: 45%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+}
+select {
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -47,7 +77,7 @@ button[class="closebtn"] {
 }
 
 
-.divv {
+.toevoegen {
     border-radius: 5px;
     background-color: #f2f2f2;
     width: 100%;
@@ -58,7 +88,18 @@ button[class="closebtn"] {
     box-sizing: border-box;
 }
 
+
+div[class=errorX]::after{
+    position: relative;
+    float: left;
+    content:"\d7";
+    font-size:40px;
+    color:red;
+    font-weight:bold;
+}
+
 div[class=error]{
+    float:left;
     color:red;
 }
 

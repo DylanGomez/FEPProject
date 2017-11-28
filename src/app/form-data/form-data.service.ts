@@ -22,21 +22,8 @@ export interface LendingsInterface {
   studentNumber: string;
 }
 
-export interface ToevoegenInterface {
-  id: number;
-  name: string;
-  status: string;
-}
-
 @Injectable()
 export class FormDataService {
-
-  // Toevoegen hardware Interfaces
-  private toevoegenhardwareItemsDB: AngularFirestoreCollection<ToevoegenInterface>;
-
-  // Firestore observable that contains our items and is capable of itteration
-  public toevoeghardwareItems: Observable<ToevoegenInterface[]>;
-
   // If true, it will show a reset button in the 'hardware-uitlenen-form' page
   public testingMode = true;
 
@@ -139,12 +126,17 @@ export class FormDataService {
 
 
   // Toevoegen van ID en Naam, plus static status en package aan de collection hardware in FireStore
-  public Toevoegen(id, name): void {
+  public Toevoegen(merknaam,type,categorie,beschrijving,aankoopprijs,aantal): void {
     this.db.collection('hardware').add({
-      id: id,
-      name: name,
+      merknaam: merknaam,
+      type: type,
+      categorie:categorie,
+      beschrijving: beschrijving,
+      aankoopprijs:aankoopprijs,
+      aantal: aantal,
       status: 'available',
-      package: 'false'
+      package: 'false',
+      datum: new Date().toLocaleString("hc")
     });
   }
 }

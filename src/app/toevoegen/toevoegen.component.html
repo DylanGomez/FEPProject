@@ -1,32 +1,70 @@
-<div class="divv">
-    <H2>Voeg hier uw nieuwe hardware toe!</H2>    
-  <div *ngIf="myid.errors">
-    <div [hidden]="!myid.errors.required" class="error">
-      Vul een ID in!
-    </div>
-  </div>
-  <div *ngIf="myname.errors">
-    <div [hidden]="!myname.errors.required" class="error">
-      Vul een naam in!
-    </div>
-  </div>
-  <input type="number" id="ID" placeholder="ID" [(ngModel)]="ID" #myid="ngModel" required>
-  <input type="text" id="name" placeholder="Naam" [(ngModel)]="name" #myname="ngModel" required>
-  <button [hidden]="myid.errors || myname.errors" (click)="openModal('custom-modal-5')" class="goed" type="submit">Opslaan</button>
-  <button [hidden]="!myid.errors && !myname.errors" class="fout">Opslaan</button>
+<div class="toevoegen">
+  <H2>Voeg hier uw nieuwe hardware toe!</H2>
+  <div class="error">
+  <div [hidden]="!AankoopprijsError">De aankoopprijs per stuk moet een positief getal zijn!</div>
+  <div [hidden]="!AantalError1">Het aantal moet een hoger getal dan 0 zijn.</div>
+  <div [hidden]="!AantalError2">Het aantal moet een afgerond getal zijn</div>
+</div>
+  <input type="text" id="merknaam" placeholder="Merknaam" [(ngModel)]="merknaam" #Merknaam="ngModel" required>
+  <input type="text" id="type" placeholder="Type" [(ngModel)]="type" #Type="ngModel" required>
+  <select id="categorie" [(ngModel)]="categorie" #Categorie="ngModel" required>
+    <option [attr.value]="categorie" disabled>Categorie</option>
+    <option *ngFor="let n of categorieen" [attr.value]="n">{{n}}</option>
+  </select>
+  <textarea rows="4" id="beschrijving" placeholder="Beschrijving" [(ngModel)]="beschrijving" #Beschrijving="ngModel" required>
+  </textarea>
+  <div><div [hidden]="!AankoopprijsError" class="errorX"></div><input type="number" id="aankoopprijs" placeholder="Aankoopprijs(p/s)" [(ngModel)]="aankoopprijs" #Aankoopprijs="ngModel" required></div>
+  <div [hidden]="!AantalError1 && !AantalError2" class="errorX"></div><input type="number" id="aantal" placeholder="Aantal" [(ngModel)]="aantal" #Aantal="ngModel" required>
+  <button [hidden]="Merknaam.errors || Type.errors || Categorie.errors|| Beschrijving.errors || Aankoopprijs.errors || Aantal.errors"
+    (click)="openModal('custom-modal-5')" class="goed" type="submit">Toevoegen</button>
+  <button title="Vul alle invoervelden in!" [hidden]="!Merknaam.errors && !Type.errors && !Categorie.errors && !Beschrijving.errors && !Aankoopprijs.errors && !Aantal.errors"
+    class="fout">Toevoegen</button>
 </div>
 
 
-<modal id="custom-modal-5" >
+<modal id="custom-modal-5">
   <div class="modal">
     <div class="modal-body">
       <h1>Alles goed ingevoerd?</h1>
       <br>
-      <td><h5>ID: <u id="IDout"></u> </h5></td>
+      <td>
+        <h5>Merknaam:
+          <u id="merknaamout"></u>
+        </h5>
+      </td>
       <br>
-      <td><h5>Name: <u id="nameout"></u> </h5></td>
-      <button class="goed" (click)="toevoegen()" (click)="closeModal('custom-modal-5');">Toevoegen </button>
-      <button class="closebtn" (click)="closeModal('custom-modal-5');">Close</button>
+      <td>
+        <h5>Type:
+          <u id="typeout"></u>
+        </h5>
+      </td>
+      <br>
+      <td>
+        <h5>Categorie:
+          <u id="categorieout"></u>
+        </h5>
+      </td>
+      <br>
+      <td>
+        <h5>Beschijving:
+          <u id="beschrijvingout"></u>
+        </h5>
+      </td>
+      <br>
+      <td>
+        <h5>Aankoopprijs:
+          <u id="aankoopprijsout"></u>
+        </h5>
+      </td>
+      <br>
+      <td>
+        <h5>Aantal:
+          <u id="aantalout"></u>
+        </h5>
+      </td>
+      <br>
+      <button class="goed" (click)="toevoegen()" (click)="closeModal('custom-modal-5');">Bevestigen </button>
+      <button class="closebtn" (click)="closeModal('custom-modal-5');">Annuleren</button>
     </div>
   </div>
   <div class="modal-background"></div>
