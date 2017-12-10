@@ -11,6 +11,7 @@ export interface HardwareItemInterface {
   id: number;
   name: string;
   status: string;
+  package: string;
   hardwareID?: string;
 }
 
@@ -46,7 +47,9 @@ export class FormDataService {
   public hardwareItems: Observable<HardwareItemInterface[]>;
 
   // Custom list containing custom data which can be used in a front end table
-  public hardwareList: { name: string; id: number; selected: boolean; hardwareID: string; }[] = [];
+  public hardwareList: { name: string; id: number; selected: boolean; hardwareID: string; package: string; }[] = [];
+  public allHardwareList: { name: string; id: number; selected: boolean; hardwareID: string; package: string; }[] = [];
+
 
   public setLent(hardwareID, id, studentnumber, studentname): void {
     // Update hardware list, set status to not available (hardwareID is the document key)
@@ -90,8 +93,9 @@ export class FormDataService {
     this.hardwareItems.forEach(function (hardwareItem) {
       hardwareItem.forEach(function (item) {
         // Adds hardware item to the list that keeps record of all the hardware items
-        hardwareList.push({ 'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID });
-      });
+        hardwareList.push({ 'name': item.name, 'id': item.id, 'selected': false, 'hardwareID': item.hardwareID, 'status': item.status
+        , 'package': item.package });
+    });
     });
   }
 
@@ -118,10 +122,23 @@ export class FormDataService {
       });
     });
     this.loadData(this.hardwareList);
+
+    // To load all data
+    this.hardwareItemsDB = db.collection('hardware', ref => ref.orderBy('id'));
+
+    this.hardwareItems = this.hardwareItemsDB.snapshotChanges().map(actions => {
+      return actions.map(action => {
+        const data = action.payload.doc.data() as HardwareItemInterface;
+        const hardwareID = action.payload.doc.id;
+        return { hardwareID, ...data };
+      });
+    });
+    this.loadData(this.allHardwareList);
+
   }
 
 
-  //Toevoegen van ID en Naam, plus static status en package aan de collection hardware in FireStore
+  // Toevoegen van ID en Naam, plus static status en package aan de collection hardware in FireStore
   public Toevoegen(id, name): void {
     this.db.collection('hardware').add({
       id: id,

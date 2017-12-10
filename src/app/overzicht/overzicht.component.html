@@ -1,0 +1,24 @@
+    <div>
+        <app-package></app-package>
+       <div class="form-group left package">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Pakket</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of allHardwareList" attr.hardwareID="{{item.hardwareID}}">
+                            <td scope="row">{{item.id}}</td>
+                            <td scope="row">{{item.name}}</td>
+                            <td scope="row">{{item.status}}</td>
+                            <td scope="row">{{item.package}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
