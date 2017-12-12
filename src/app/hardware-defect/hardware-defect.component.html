@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 <!--Made by Joost -->
+=======
+<h1>Hardware defect registreren</h1>
+<p>Hier kunt u kapotte hardware registreren. Nadat hardware is geregistreerd als defect komt deze niet meer voor in de lijst voor het uitlenen van hardware.<br>
+Let op: Hardware moet ingeleverd zijn voor u heb kan registreren als defect.   
+</p>
+>>>>>>> refs/remotes/origin/master
 <form class="mainForm">
   <div class="form-group left">
     <table class="table table-striped">
@@ -9,10 +16,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.id}}">
+          <tr *ngFor="let item of hardwareList" attr.hardwareID="{{item.hardwareID}}">
             <td scope="row">{{item.name}}</td>
             <td class="selectHardware">
-              <button (click)="selectHardware(item.id)" class="btn btn-secondairy">Selecteer</button>
+              <button (click)="selectHardware(item.hardwareID)" class="btn btn-secondairy">Selecteer</button>
             </td>
           </tr>
         </tbody>
@@ -24,7 +31,7 @@
       </div>
       <ng-template #disabledButton>
         <button type="submit" class="btn btn-primary" disabled>Defect registeren</button>
-        Nog niet alles is ingevuld!
+        Nog geen hardware geselecteerd!
     </ng-template>
 
 </div>
@@ -51,8 +58,8 @@
             </thead>
             <tbody>
               <ng-container *ngFor="let item of hardwareList">
-                <tr *ngIf="item.selected" attr.hardwareID="{{item.id}}">
-                  <th scope="row" class="hardwareID">{{item.id}}</th>
+                <tr *ngIf="item.selected" attr.hardwareID="{{item.hardwareID}}">
+                  <th scope="row" class="hardwareID">{{item.hardwareID}}</th>
                   <td>{{item.name}}</td>
                 </tr>
               </ng-container>
@@ -62,7 +69,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+<<<<<<< HEAD
           <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">bevestig</button>
+=======
+          <button type="button" class="btn btn-primary"   data-dismiss="modal" (click)="saveStatus()">Registreer defect</button>
+>>>>>>> refs/remotes/origin/master
         </div>
       </div>
     </div>
