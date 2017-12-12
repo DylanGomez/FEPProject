@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-// Made by Guus & Joost
-=======
->>>>>>> refs/remotes/origin/master
 import { Injectable } from '@angular/core';
 import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
@@ -54,16 +50,10 @@ export class FormDataService {
       date: new Date(new Date().getTime()).toLocaleString()
     });
   }
-<<<<<<< HEAD
-// Set hardware to defect in database.
-    public setDefect(hardwareID, id): void {
-      this.hardwareItemsDB.doc(hardwareID).update({status: 'Broken'});
-=======
 
   public setDefect(hardwareID): void {
     this.hardwareItemsDB.doc(hardwareID).update({ status: 'Broken' });
   }
->>>>>>> refs/remotes/origin/master
 
   public resetAvailability(): void {
     // This will reset ALL hardware items status and set it back to available.
